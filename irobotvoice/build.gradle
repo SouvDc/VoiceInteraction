@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+/*
+
+uploadArchives {
+
+
+
+    repositories {
+        mavenDeployer {
+            repository(url: rootProject.ext.maven_config["mavenURL"]) {
+                authentication(
+                        userName: rootProject.ext.maven_config["mavenLoginName"],
+                        password:  rootProject.ext.maven_config["mavenPassword"]
+                )
+            }
+
+            pom.project {
+                version '1.2.1'
+                artifactId 'irobotvoice'
+                groupId 'com.cnbot.irobotvoice'
+                packaging 'aar'
+                description '北京新机场小I语音引擎模块: ali的tts加入非空判断'
+            }
+        }
+    }
+}
+//将源代码打包进aar
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+artifacts {
+    archives androidSourcesJar
+}
+
+*/
+
+
+dependencies {
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.alibaba:fastjson:1.1.70.android'
+    testImplementation 'junit:junit:4.12'
+    implementation files('libs/Msc.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/bdasr_V3_20190515_c9eed5d.jar')
+    implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
+    implementation 'com.cnbot.zlog:zlog:1.0.0'
+    implementation 'com.cnbot.aiui:aiui:1.0.0'
+
+}
